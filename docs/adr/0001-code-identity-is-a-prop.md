@@ -1,0 +1,7 @@
+# Rendering code identity is part of every page's Build Signature
+
+A render is a pure function of its props, and props are the only input a render is allowed to have — so "same signature ⇒ byte-identical output" holds by construction, and skipping a render whose signature matches the sidecar is sound. That law has a hole: the render function's *own code* is an input that no data prop captures, and templates are edited far more often than the engine. We close it by treating code as data — a hash of the entire `builder/` tree is mixed into every page's signature components, so any builder edit moves every signature and rebuilds the world, while a post edit moves exactly one.
+
+Rejected: leaving code identity out and requiring a manual `--rebuild-all` after template edits (you *will* forget the flag, and the purity law silently breaks); hashing `fn.toString()` per component (misses closures and transitive imports — unsound, i.e. silently stale). Deliberately deferred, in order: per-template-directory granularity, then true per-module transitive hashing exposed by `optative-script`'s loader (which sees every import). Both refinements only change how the `builder` component is computed — the sidecar format already accommodates them.
+
+Known v1 gap: the `esto` binary's own version is not in the signature (it exposes no version at runtime). An engine upgrade must be accompanied by any builder-tree edit to force a rebuild.
