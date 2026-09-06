@@ -3,6 +3,7 @@ interface PostView {
   title: string;
   date: string;
   body: string;
+  note?: string;
 }
 
 export function renderPost(post: PostView): string;
