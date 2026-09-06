@@ -8,7 +8,7 @@
 // left margin, and each margin item gets its own scroll timeline — the
 // timeline CSS is generated per page from the real section count.
 import { marked } from "./marked.esm.js";
-import { BASE_CSS, duckingCss, markSvg, RUNTIME_JS } from "./design.js";
+import { BASE_CSS, duckingCss, markSvg, OVERLAY_HTML, RUNTIME_JS } from "./design.js";
 
 const SITE_TITLE = "Daniel Kantor";
 
@@ -38,12 +38,15 @@ ${duck}
 <div class="fadeband fade-top"></div>
 <div class="fadeband fade-bot-core"></div>
 <div class="fadeband fade-bot"></div>
+${OVERLAY_HTML}
 <div class="page">
 <header class="chrome">
   <a class="mark" href="${root}" aria-label="Home">${markSvg()}</a>
   <nav>
     <a href="${root}">Posts</a>
     <a href="#" class="dim" id="theme-toggle">Theme</a>
+    <a href="#" class="dim" id="effects-toggle">Effects on</a>
+    <a href="#" class="dim" id="grid-toggle" style="display: var(--grid-link);">Grid</a>
   </nav>
 </header>
 ${body}
