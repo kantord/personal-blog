@@ -4,64 +4,74 @@ date: 2026-09-29
 slug: headphones-for-agentic-coding
 ---
 
-A lot of my coding now happens by talking. I have music on, I hit a key on a macropad, the
-music ducks, I dictate a prompt to a coding agent, and the music comes back while the agent
-works. Transcription runs locally and the whole loop is driven by an i3 keybinding.
+Once I started working with AI agents a lot, I finally started using voice typing
+properly. Explaining a task to an agent is much faster by talking than by typing, so now a
+big part of my day goes like this: hit a key, the music pauses, dictate a prompt, and the
+music comes back while the agent works. Transcription runs locally and the whole loop hangs
+off an i3 keybinding.
 
-That sounds like a solved problem: buy decent headphones. It wasn't. I went down a proper
-rabbit hole, and the useful part of the story is how many of my starting assumptions were
+The catch is that I didn't want to give up listening to music. That turned "buy decent
+headphones" into a surprisingly specific problem with two requirements I hadn't thought
+about before:
+
+- **Low latency**, so pausing and resuming the music around dictation feels instant instead
+  of laggy.
+- **Open ears**, because talking a lot with your ears blocked is extremely uncomfortable.
+
+I went down a proper rabbit hole to get there, and plenty of my starting assumptions were
 wrong. Here's the short version, in case your setup looks like mine.
 
-## Where I started: sealed buds with noise cancelling
+## Why open ears matter when you talk all day
 
-My first requirement list was the obvious one: in-ear buds that seal the canal, strong
-active noise cancelling, good codecs. The usual "headphones for focus" advice. I spent real
-time on it too: comparing ANC tiers, reading about hiss in quiet rooms, even working out how
-to look after my ears if I was going to have plugs in them all day.
+My first instinct was the usual "headphones for focus" advice: in-ear buds that seal the
+canal, strong active noise cancelling, good codecs. I spent real time on it too, comparing
+noise-cancelling tiers and reading about hiss in quiet rooms.
 
-All of that turned out to be for the wrong product.
+All of that was for the wrong product. When your ears are sealed and you speak, your own
+voice comes back boomy, as if you're talking inside a barrel. This is the **occlusion
+effect**. Once in a while it's fine. When you're talking every few minutes all day, it's
+genuinely unpleasant. You also end up speaking more quietly, and mumbling is exactly what a
+speech-to-text model doesn't want.
 
-## The flip: you have to hear yourself talk
-
-The thing I'd missed is the **occlusion effect**. When you seal your ear canal and speak,
-your own voice comes back boomy, as if you're talking inside a barrel. The natural reaction
-is to speak more quietly, and quiet mumbling is exactly what a speech-to-text model doesn't
-want.
-
-For a workflow that's "listen, then talk, then listen again", sealing the ear is actively
-wrong, and noise cancelling is working against you. You *want* to hear your own voice and
-the room. That flipped the whole search from sealed buds to anything open: open-ear buds,
-or open-back headphones.
+So sealing is actively wrong for this workflow, and noise cancelling works against you. You
+*want* to hear your own voice and the room. That flipped the search to anything open:
+open-ear buds, or open-back headphones.
 
 It also made a lot of spec-sheet features irrelevant. I use a separate desk mic for
 dictation and calls, so multi-mic AI call processing is dead weight. Spatial audio at a desk
-is pointless. ANC is now a negative. Once those are gone, you're paying for comfort and
-drivers that don't sound bad, which you can get well below flagship prices.
+is pointless. Once those are gone, you're paying for comfort and drivers that don't sound
+bad, which you can get well below flagship prices.
+
+## Why latency matters: pausing music without the lag
+
+The dictation key pauses the music before the mic opens, and releasing it brings the music
+back. With a laggy link you hear the music keep going for a moment after you've started
+talking, and the whole thing feels clumsy instead of like a single action.
+
+Bluetooth is the weak point here. Latency is often around 200 ms, and on Linux opening a mic
+can make Bluetooth headphones switch to the low-quality "headset" profile mid-song unless
+you disable that. A 2.4 GHz USB dongle, the kind gaming headsets use, is much better: tens of
+milliseconds, and no Bluetooth stack involved at all.
+
+I did take this one step too far at first. I wanted under 20 ms, so that turning a knob on
+my macropad would give an instant click in my ears. No private, wireless option delivers
+that. Even the good gaming dongles measure somewhere around 24–38 ms, whatever the box says,
+and the only way under 20 ms was a wired speaker, which isn't private. So I dropped the
+knob clicks. For pausing music and short "dictation started" sounds, dongle latency is
+plenty.
 
 ## The requirements that actually mattered
 
 When I finally wrote the needs down instead of a product category, they were:
 
 - **Hear myself speak.** No seal, so no occlusion.
+- **Low enough latency** that pausing around dictation feels seamless.
 - **Keep awareness of the room.**
 - **Wireless, with range through walls.** I get up and walk around a small flat while
   listening.
 - **Comfortable for about six hours a day.**
 - **Works on Linux**, behind a KVM switch that flips my desk between two machines.
 - **Sound that isn't bad.**
-
-## The latency trap
-
-For a while I also wanted sub-20 ms audio, so that turning a knob on the macropad would give
-an instant click in my ears. I spent far too long on this. The honest conclusion was that no
-private, wireless path delivers it. Bluetooth is nowhere close. The better 2.4 GHz gaming
-dongles are measured somewhere in the 24–38 ms range, whatever the box says. The only way
-under 20 ms was a wired speaker, which isn't private.
-
-So I dropped the requirement. Discrete sounds such as "dictation started" or "workspace
-switched" don't need that kind of latency, because nothing physical is competing with them.
-Per-detent knob ticks were the only thing that did, and I can live without them. If you're
-chasing latency for a similar reason, check first that the feature it serves is worth it.
 
 ## The mistake: searching for a form factor
 
@@ -109,7 +119,8 @@ If you code by voice with music on:
    different job.
 3. **Write down needs, not a product category.** My best option sat outside the category I
    was searching in.
-4. **On Linux, a USB dongle beats Bluetooth**: no profile switching, and it survives a KVM.
+4. **Use a 2.4 GHz USB dongle, not Bluetooth.** Lower latency makes auto-pausing music feel
+   seamless, there is no profile switching, and on Linux it survives a KVM.
 5. **Stop researching and try it.** I produced far more research than this decision needed.
    Several of the problems I spent the most time on either didn't show up in practice or
    disappeared once I simply measured.
